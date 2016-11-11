@@ -1,55 +1,60 @@
-template1 wlp3s0 #wifi
-template2 enp0s25 #eth
-template3 enp0s29u1u2 #usb
+conky.config = {
+	template1 = 'wlp3s0',--wifi
+	template2 = 'enp0s25',--eth
+	template3 = 'enp0s29u1u2',--usb
 
-# Settings
-background yes
-double_buffer yes
-cpu_avg_samples 2
-net_avg_samples 2
-if_up_strictness address
-no_buffers yes
-out_to_console no
-out_to_stderr no
-extra_newline no
-use_spacer none
-show_graph_scale no
-show_graph_range no
-update_interval 3.0
-disable_auto_reload no
+-- Settings
+	background = true,
+	double_buffer = true,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	if_up_strictness = 'address',
+	no_buffers = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+	use_spacer = 'none',
+	show_graph_scale = false,
+	show_graph_range = false,
+	update_interval = 3.0,
+	disable_auto_reload = false,
 
-#Window
-alignment top_right
-background no
-border_width 0
-draw_borders no
-draw_graph_borders yes
-draw_outline no
-draw_shades no
-gap_x 5
-gap_y 45
-maximum_width 768
-minimum_size 300 768
-own_window yes
-own_window_transparent yes
-own_window_class Conky
-own_window_type desktop
-stippled_borders 0
+--Window
+	alignment = 'top_right',
+	background = false,
+	border_width = 0,
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_outline = false,
+	draw_shades = false,
+	gap_x = 5,
+	gap_y = 45,
+	maximum_width = 768,
+	minimum_width = 300, minimum_height = 768,
+	own_window = true,
+	own_window_transparent = true,
+	own_window_class = 'Conky',
+	own_window_type = 'desktop',
+	stippled_borders = 0,
 
-#Color & Font
-default_color white
-color1 bbbbbb
-default_outline_color black
-default_shade_color black
-use_xft yes
-xftfont DejaVu Sans Mono:size=10
-uppercase no
+--Color & Font
+	default_color = 'white',
+	color1 = '#bbbbbb',
+	default_outline_color = 'black',
+	default_shade_color = 'black',
+	use_xft = true,
+	font = 'DejaVu Sans Mono:size=10',
+	uppercase = false,
 
-#Alias
-template8 ${voffset 10}${font DejaVu Sans:style=Bold:size=11}${alignc}\1$font${voffset 5}
-template9 ${color1}Ip: $color${addr \1}\n${color1}Dw: $color${downspeed \1}${goto 157}${color1}Up: $color${upspeed \1}\n${color1}${downspeedgraph \1 27,145 bbbbbb ffffff}${goto 157}${upspeedgraph \1 27,145 bbbbbb ffffff}$color
+--Alias
+	template8 = [[
+${voffset 10}${font DejaVu Sans:style=Bold:size=11}${alignc}\1$font${voffset 5}]],
+	template9 = [[
+${color1}Ip: $color${addr \1}\n${color1}Dw: $color${downspeed \1}${goto 157}${color1}Up: $color${upspeed \1}\n${color1}${downspeedgraph \1 27,145 bbbbbb ffffff}${goto 157}${upspeedgraph \1 27,145 bbbbbb ffffff}$color]],
 
-TEXT
+};
+
+conky.text = [[
 $alignc${font DejaVu Sans:style=Bold:size=30}${time %H}${font DejaVu Sans:size=29}:${time %M}${font DejaVu Sans:size=7}:${time %S}${font}
 $alignc ${time %d/%m/%y}
 
@@ -90,3 +95,4 @@ ${color1}Public Ip: $color${execi 120 ~/.conky/echoip.sh}
 $else \
 ${alignc}No Connection
 $endif
+]];
